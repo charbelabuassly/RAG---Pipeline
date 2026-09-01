@@ -33,3 +33,12 @@ class QdrantDB:
             collection_name="rag_documents",
             points=[point]
         )
+
+    def search(self, vector, limit=3):
+        results = self.client.query_points(
+            collection_name="rag_documents",
+            query=vector,
+            limit=limit
+        )
+
+        return results.points
